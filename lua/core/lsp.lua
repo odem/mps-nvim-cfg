@@ -8,47 +8,17 @@ vim.lsp.config["*"] = {
 	},
 }
 
--- Auto-install missing servers via Mason (deferred, non-blocking)
-vim.schedule(function()
-	local servers = {
-		-- Python
-		{ bin = "ruff", mason = "ruff" },
-		{ bin = "pyright-langserver", mason = "pyright" },
-		-- Lua
-		{ bin = "lua-language-server", mason = "lua-language-server" },
-		-- Web (use vscode- prefix for some)
-		{ bin = "html-language-server", mason = "vscode-html-language-server" },
-		{ bin = "css-language-server", mason = "vscode-css-language-server" },
-		{ bin = "typescript-language-server", mason = "typescript-language-server" },
-		-- Docker
-		{ bin = "dockerfile-language-server", mason = "dockerfile-language-server" },
-		-- JSON
-		{ bin = "json-language-server", mason = "vscode-json-language-server" },
-		-- Markup
-		{ bin = "marksman", mason = "marksman" },
-		-- Shell
-		{ bin = "bash-language-server", mason = "bash-language-server" },
-		-- Systems
-		{ bin = "rust-analyzer", mason = "rust-analyzer" },
-		{ bin = "clangd", mason = "clangd" },
-		{ bin = "cmake-language-server", mason = "cmake-language-server" },
-		{ bin = "vim-language-server", mason = "vim-language-server" },
-		-- Optional (may not exist in Mason)
-		{ bin = "texlab", mason = "texlab" },
-		{ bin = "lemminx", mason = "lemminx" },
-		{ bin = "taplo", mason = "taplo" },
-		{ bin = "nginx-language-server", mason = "nginx-language-server" },
-		{ bin = "csharp-language-server", mason = "omnisharp" },
-	}
-	for _, s in ipairs(servers) do
-		if vim.fn.executable(s.bin) ~= 1 then
-			local ok, err = pcall(vim.cmd, "MasonInstall " .. s.mason)
-			if not ok then
-				vim.notify("MasonInstall " .. s.mason .. " failed: " .. err, vim.log.levels.WARN)
-			end
-		end
-	end
-end)
+-- LSP servers auto-install via Mason
+-- Run :Mason to see available servers
+-- Install with :MasonInstall <server-name>
+--
+-- Recommended servers to install:
+-- :MasonInstall ruff pyright lua-language-server
+-- :MasonInstall html-language-server css-lsp typescript-language-server
+-- :MasonInstall dockerfile-language-server json-lsp marksman
+-- :MasonInstall bash-language-server rust-analyzer clangd
+-- :MasonInstall cmake-language-server vim-language-server
+-- :MasonInstall texlab lemminx taplo nginx-language-server omnisharp
 
 vim.lsp.config.ruff = {
 	cmd = { "ruff", "server" },

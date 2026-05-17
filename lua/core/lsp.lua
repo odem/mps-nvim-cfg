@@ -8,12 +8,30 @@ vim.lsp.config["*"] = {
 	},
 }
 
--- Auto-install core LSP servers via Mason (deferred, non-blocking)
+-- Auto-install LSP servers via Mason (deferred, non-blocking)
 vim.schedule(function()
 	local servers = {
 		{ bin = "ruff", mason = "ruff" },
 		{ bin = "pyright-langserver", mason = "pyright" },
 		{ bin = "lua-language-server", mason = "lua-language-server" },
+		{ bin = "html", mason = "html-lsp" },
+		{ bin = "css-lsp", mason = "css-lsp" },
+		{ bin = "typescript-language-server", mason = "typescript-language-server" },
+		{ bin = "dockerfile-language-server", mason = "dockerfile-language-server" },
+		{ bin = "docker-compose-language-service", mason = "docker-compose-language-service" },
+		{ bin = "json-lsp", mason = "json-lsp" },
+		{ bin = "marksman", mason = "marksman" },
+		{ bin = "bash-language-server", mason = "bash-language-server" },
+		{ bin = "rust-analyzer", mason = "rust-analyzer" },
+		{ bin = "clangd", mason = "clangd" },
+		{ bin = "cmake-language-server", mason = "cmake-language-server" },
+		{ bin = "vim-language-server", mason = "vim-language-server" },
+		{ bin = "texlab", mason = "texlab" },
+		{ bin = "lemminx", mason = "lemminx" },
+		{ bin = "taplo", mason = "taplo" },
+		{ bin = "nginx-language-server", mason = "nginx-language-server" },
+		{ bin = "ansible-language-server", mason = "ansible-language-server" },
+		{ bin = "omnisharp", mason = "omnisharp" },
 	}
 	for _, s in ipairs(servers) do
 		if vim.fn.executable(s.bin) ~= 1 then
@@ -76,7 +94,7 @@ vim.lsp.enable("lua_ls")
 
 -- HTML
 vim.lsp.config.html = {
-	cmd = { "html", "--stdio" },
+	cmd = { "html-lsp", "--stdio" },
 	filetypes = { "html", "templ" },
 	root_markers = { "package.json", ".git" },
 }
@@ -134,7 +152,7 @@ vim.lsp.enable("jsonls")
 
 -- Markdown
 vim.lsp.config.marksman = {
-	cmd = { "marksman", "server" },
+	cmd = { "marksman" },
 	filetypes = { "markdown", "markdown.mdx" },
 	root_markers = { ".git", ".marksman.toml" },
 }
@@ -193,7 +211,7 @@ vim.lsp.enable("rust_analyzer")
 
 -- TOML
 vim.lsp.config.taplo = {
-	cmd = { "taplo", "lsp", "stdio" },
+	cmd = { "taplo" },
 	filetypes = { "toml" },
 	root_markers = { ".toml", ".git" },
 }
@@ -247,7 +265,7 @@ vim.lsp.enable("clangd")
 
 -- C#
 vim.lsp.config.csharp_ls = {
-	cmd = { "csharp-language-server" },
+	cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
 	filetypes = { "cs" },
 	root_markers = { ".csproj", ".git" },
 	settings = {

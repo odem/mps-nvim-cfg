@@ -30,6 +30,7 @@ deps:       ## Install external system dependencies (requires sudo)
 	@echo ""
 	@echo "=== Node.js tools ==="
 	@npm install -g tree-sitter-cli 2>/dev/null || echo "tree-sitter-cli: skipped (npm not available)"
+	@cargo install tree-sitter-cli 2>/dev/null || echo "tree-sitter-cli: already installed via cargo"
 
 	@echo ""
 	@echo "=== Neovim plugins ==="

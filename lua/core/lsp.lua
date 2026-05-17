@@ -10,58 +10,43 @@ vim.lsp.config["*"] = {
 
 -- Auto-install LSP servers via Mason (deferred, non-blocking)
 vim.schedule(function()
-	local data_dir = vim.fn.stdpath("data")
-	local cache_file = data_dir .. "/mason-installed"
+	-- Use Mason's registry to check installed packages
+	local registry = require("mason-registry")
 	local installed = {}
 
-	-- Load cached installation status
-	local lines = {}
-	local ok, lines_read = pcall(vim.fn.readfile, cache_file)
-	if ok and lines_read and #lines_read > 0 then
-		lines = lines_read
-		for _, name in ipairs(lines) do
-			installed[name] = true
-		end
-	end
-
-	local servers = {
-		{ bin = "ruff", mason = "ruff" },
-		{ bin = "pyright-langserver", mason = "pyright" },
-		{ bin = "lua-language-server", mason = "lua-language-server" },
-		{ bin = "html-lsp", mason = "html-lsp" },
-		{ bin = "css-lsp", mason = "css-lsp" },
-		{ bin = "typescript-language-server", mason = "typescript-language-server" },
-		{ bin = "dockerfile-language-server", mason = "dockerfile-language-server" },
-		{ bin = "docker-compose-language-service", mason = "docker-compose-language-service" },
-		{ bin = "json-lsp", mason = "json-lsp" },
-		{ bin = "marksman", mason = "marksman" },
-		{ bin = "bash-language-server", mason = "bash-language-server" },
-		{ bin = "rust-analyzer", mason = "rust-analyzer" },
-		{ bin = "clangd", mason = "clangd" },
-		{ bin = "cmake-language-server", mason = "cmake-language-server" },
-		{ bin = "vim-language-server", mason = "vim-language-server" },
-		{ bin = "texlab", mason = "texlab" },
-		{ bin = "lemminx", mason = "lemminx" },
-		{ bin = "taplo", mason = "taplo" },
-		{ bin = "nginx-language-server", mason = "nginx-language-server" },
-		{ bin = "ansible-language-server", mason = "ansible-language-server" },
-		{ bin = "omnisharp", mason = "omnisharp" },
-	}
-
-	local to_install = {}
-	for _, s in ipairs(servers) do
-		if not installed[s.mason] and vim.fn.executable(s.bin) ~= 1 then
-			table.insert(to_install, s.mason)
-		end
-	end
-
-	-- Install all at once to avoid repeated restarts
-	if #to_install > 0 then
-		local ok, err = pcall(vim.cmd, "MasonInstall " .. table.concat(to_install, " "))
-		if ok then
-			-- Cache successful installations
-			vim.fn.writefile(to_install, cache_file, "a")
-		end
+	-- Get installed packages from Mason
+	local ok, err = pcall(function()
+		registry.ensure_installed({
+			"ruff",
+			"pyright",
+			"lua-language-server",
+			"html-lsp",
+			"css-lsp",
+			"typescript-language-server",
+			"dockerfile-language-server",
+			"docker-compose-language-service",
+			"json-lsp",
+			"marksman",
+			"bash-language-server",
+			"rust-analyzer",
+			"clangd",
+			"cmake-language-server",
+			"vim-language-server",
+			"texlab",
+			"lemminx",
+			"taplo",
+			"nginx-language-server",
+			"ansible-language-server",
+			"omnisharp",
+		}, function()
+			-- on success
+		end, function(package, error)
+			-- on failure
+			vim.notify("Failed to install " .. package .. ": " .. error, vim.log.levels.WARN)
+		end)
+	end)
+	if not ok then
+		-- Mason not ready yet, ignore
 	end
 end)
 

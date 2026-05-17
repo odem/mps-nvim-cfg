@@ -5,7 +5,7 @@ require("lazy").setup({
 		require("core.fidget"),
 		require("core.completion"),
 		require("core.luasnip"),
-		require("init.friendly-snippets"),
+		require("core.friendly-snippets"),
 		require("core.treesitter"),
 		require("core.lazydev"),
 		require("core.neoconf"),

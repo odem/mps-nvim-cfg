@@ -1,4 +1,4 @@
-.PHONY: lint check health validate
+.PHONY: lint check health validate deps
 
 lint:       ## Run luacheck on all Lua files
 	luacheck lua/
@@ -12,3 +12,8 @@ health:    ## Run :checkhealth internally
 validate:   ## Full validation suite
 	$(MAKE) lint
 	$(MAKE) check
+
+deps:       ## Install external system dependencies (requires sudo)
+	@echo "Installing system dependencies for LSP servers..."
+	@sudo apt update
+	@sudo apt install -y shellcheck cmake clangd

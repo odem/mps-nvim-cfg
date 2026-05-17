@@ -27,7 +27,6 @@ vim.schedule(function()
 			"bash-language-server",
 			"rust-analyzer",
 			"clangd",
-			"cmake-language-server",
 			"vim-language-server",
 			"texlab",
 			"lemminx",
@@ -244,16 +243,16 @@ vim.lsp.enable("vimls")
 -- }
 -- vim.lsp.enable("nginx_language_server")
 
--- CMake
-vim.lsp.config.cmake = {
-	cmd = { "cmake-language-server" },
-	filetypes = { "cmake" },
-	root_markers = { "CMakeLists.txt", "CMakePresets.json", ".git" },
-	settings = {
-		buildDirectory = "build",
-	},
-}
-vim.lsp.enable("cmake")
+-- CMake (disabled - broken pygls dependency in Mason package)
+-- vim.lsp.config.cmake = {
+-- 	cmd = { "cmake-language-server" },
+-- 	filetypes = { "cmake" },
+-- 	root_markers = { "CMakeLists.txt", "CMakePresets.json", ".git" },
+-- 	settings = {
+-- 		buildDirectory = "build",
+-- 	},
+-- }
+-- vim.lsp.enable("cmake")
 
 -- C/C++
 vim.lsp.config.clangd = {

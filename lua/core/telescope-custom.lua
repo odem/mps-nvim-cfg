@@ -1,8 +1,8 @@
-local themes = require("telescope.themes")
-local builtin = require("telescope.builtin")
 local M = {}
 
-function M.find_files_slash()
+function M.find_files_slight()
+	local builtin = require("telescope.builtin")
+	local themes = require("telescope.themes")
 	builtin.find_files(themes.get_ivy({
 		cwd = "/",
 		prompt_title = "  /  ",
@@ -12,6 +12,8 @@ function M.find_files_slash()
 end
 
 function M.find_files_root()
+	local builtin = require("telescope.builtin")
+	local themes = require("telescope.themes")
 	builtin.find_files(themes.get_ivy({
 		cwd = "/root",
 		prompt_title = "  /root  ",
@@ -21,6 +23,8 @@ function M.find_files_root()
 end
 
 function M.find_files_home()
+	local builtin = require("telescope.builtin")
+	local themes = require("telescope.themes")
 	builtin.find_files(themes.get_ivy({
 		cwd = "~",
 		prompt_title = "  ~  ",
@@ -30,6 +34,8 @@ function M.find_files_home()
 end
 
 function M.find_files_mps()
+	local builtin = require("telescope.builtin")
+	local themes = require("telescope.themes")
 	builtin.find_files(themes.get_ivy({
 		cwd = "~/mps",
 		prompt_title = "  ~/mps  ",
@@ -39,6 +45,8 @@ function M.find_files_mps()
 end
 
 function M.find_files_scratch()
+	local builtin = require("telescope.builtin")
+	local themes = require("telescope.themes")
 	builtin.find_files(themes.get_ivy({
 		cwd = "~/mps/scratch",
 		prompt_title = "  ~/mps/scratch  ",
@@ -48,6 +56,8 @@ function M.find_files_scratch()
 end
 
 function M.find_files_repo()
+	local builtin = require("telescope.builtin")
+	local themes = require("telescope.themes")
 	builtin.find_files(themes.get_ivy({
 		cwd = "~/mps/repo",
 		prompt_title = "  ~/mps/repo  ",
@@ -57,6 +67,8 @@ function M.find_files_repo()
 end
 
 function M.find_files_etc()
+	local builtin = require("telescope.builtin")
+	local themes = require("telescope.themes")
 	builtin.find_files(themes.get_ivy({
 		cwd = "/etc",
 		prompt_title = "  /etc  ",
@@ -66,6 +78,8 @@ function M.find_files_etc()
 end
 
 function M.find_files_var()
+	local builtin = require("telescope.builtin")
+	local themes = require("telescope.themes")
 	builtin.find_files(themes.get_ivy({
 		cwd = "/var",
 		prompt_title = "  /var  ",
@@ -75,6 +89,8 @@ function M.find_files_var()
 end
 
 function M.find_files_log()
+	local builtin = require("telescope.builtin")
+	local themes = require("telescope.themes")
 	builtin.find_files(themes.get_ivy({
 		cwd = "/var/log",
 		prompt_title = "  /var/log  ",

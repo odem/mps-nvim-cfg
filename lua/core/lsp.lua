@@ -8,17 +8,19 @@ vim.lsp.config["*"] = {
 	},
 }
 
--- LSP servers auto-install via Mason
--- Run :Mason to see available servers
--- Install with :MasonInstall <server-name>
---
--- Recommended servers to install:
--- :MasonInstall ruff pyright lua-language-server
--- :MasonInstall html-language-server css-lsp typescript-language-server
--- :MasonInstall dockerfile-language-server json-lsp marksman
--- :MasonInstall bash-language-server rust-analyzer clangd
--- :MasonInstall cmake-language-server vim-language-server
--- :MasonInstall texlab lemminx taplo nginx-language-server omnisharp
+-- Auto-install core LSP servers via Mason (deferred, non-blocking)
+vim.schedule(function()
+	local servers = {
+		{ bin = "ruff", mason = "ruff" },
+		{ bin = "pyright-langserver", mason = "pyright" },
+		{ bin = "lua-language-server", mason = "lua-language-server" },
+	}
+	for _, s in ipairs(servers) do
+		if vim.fn.executable(s.bin) ~= 1 then
+			pcall(vim.cmd, "MasonInstall " .. s.mason)
+		end
+	end
+end)
 
 vim.lsp.config.ruff = {
 	cmd = { "ruff", "server" },

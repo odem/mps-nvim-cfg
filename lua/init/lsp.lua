@@ -107,7 +107,7 @@ vim.lsp.enable("html")
 
 -- CSS
 vim.lsp.config.cssls = {
-	cmd = { "css-lsp", "--stdio" },
+	cmd = { "vscode-css-language-server", "--stdio" },
 	filetypes = { "css", "scss", "less" },
 	root_markers = { "package.json", ".git" },
 	settings = {
@@ -128,7 +128,7 @@ vim.lsp.enable("ts_ls")
 
 -- Docker
 vim.lsp.config.dockerls = {
-	cmd = { "dockerfile-language-server", "--stdio" },
+	cmd = { "docker-langserver", "--stdio" },
 	filetypes = { "dockerfile" },
 	root_markers = { "Dockerfile", ".git" },
 }
@@ -149,7 +149,7 @@ vim.lsp.enable("docker_compose_language_service")
 
 -- JSON
 vim.lsp.config.jsonls = {
-	cmd = { "json-lsp", "--stdio" },
+	cmd = { "vscode-json-language-server", "--stdio" },
 	filetypes = { "json", "jsonc" },
 	root_markers = { ".git" },
 }

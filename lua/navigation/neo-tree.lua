@@ -6,6 +6,16 @@ return {
 		"MunifTanjim/nui.nvim",
 		"nvim-tree/nvim-web-devicons",
 	},
+	cmd = "Neotree",
+	keys = {
+		{
+			"<leader>e",
+			function()
+				require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
+			end,
+			desc = "[Neo-tree] toggle explorer",
+		},
+	},
 	opts = {
 		sources = { "filesystem", "buffers", "git_status" },
 		filesystem = {
@@ -18,14 +28,6 @@ return {
 		},
 		default_component_configs = {
 			indent = { with_markers = true },
-		},
-		event_handlers = {
-			{
-				event = "file_open_requested",
-				handler = function()
-					require("neo-tree.command").execute({ action = "close" })
-				end,
-			},
 		},
 	},
 }

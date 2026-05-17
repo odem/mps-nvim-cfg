@@ -3,5 +3,6 @@ vim.g.maplocalleader = ' '
 
 require('options')
 require('keymaps')
-require('core.lazy')
-require('core.lsp')
+require('init.bootstrap')
+require('init.plugins')
+require('init.lsp')

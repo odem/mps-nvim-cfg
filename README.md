@@ -28,7 +28,7 @@ init.lua
 ├── keymaps.lua              global keybindings
 └── init/
     ├── bootstrap.lua         lazy.nvim bootstrap
-    ├── plugins.lua          loads all plugin specs (core/, appearance/, navigation/, tools/, debugging/)
+    ├── plugins.lua          lazy.nvim setup → requires core/, appearance/, navigation/, tools/, debugging/
     └── lsp.lua              native LSP config (21 servers)
 ```
 

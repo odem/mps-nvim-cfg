@@ -1,6 +1,6 @@
-# helpers/
+# Helpers
 
-Utility modules shared across the config at `lua/helpers/`.
+Utility modules shared across the config at [`lua/helpers/`](lua/helpers/).
 
 ---
 
@@ -14,14 +14,11 @@ Scans all open windows for one whose buffer `buftype` is
 `'quickfix'`. If found, closes it (`cclose`). If not found,
 opens a new quickfix window (`copen`).
 
-Called by `<A-q>` in `keymaps.lua`.
+Called by `<A-q>` in [`lua/keymaps.lua`](lua/keymaps.lua).
 
 Differs from a naive toggle: checks actual window `buftype`
 rather than tracking state in a variable, so it stays correct
 even if the quickfix window is closed manually.
-  
-
-
 
 ---
 
@@ -30,8 +27,6 @@ even if the quickfix window is closed manually.
 Conditional delete-left and delete-right using WORD-aware logic.
 
 ### Details
-
-Two functions:
 
 **`left()`** — Smart Backspace:
 - At the beginning of a non-first line: join with the previous
@@ -47,22 +42,33 @@ Two functions:
   (`lx`).
 - Otherwise: delete forward WORD (`dW`).
 
-Rewritten in pure Lua (the original Vimscript in the old config
-had off-by-one errors from mixing 0-based `getline()[idx]` with
-1-based `col('.')`). Uses Lua 1-based `string:sub()` which
-matches `col('.')` natively.
+Uses Lua 1-based `string:sub()` which matches `col('.')` natively.
 
-Called by `<S-BS>` and `<S-Del>` in `keymaps.lua`.
-  
+Called by `<S-BS>` and `<S-Del>` in [`lua/keymaps.lua`](lua/keymaps.lua).
 
+---
 
+## themes
+
+Protected colorscheme application with a reusable function.
+
+### Details
+
+`setColorScheme(name)` wraps `vim.cmd('colorscheme ' .. name)` in
+`pcall`. If the colorscheme isn't installed, it prints a warning
+instead of crashing.
+
+Called by [`lua/appearance/tokyonight.lua`](lua/appearance/tokyonight.lua)'s
+`config()` to apply the tokyonight theme. Can be reused for other
+colorschemes by importing this module.
 
 ---
 
 ## telescope-custom
 
 Custom telescope `find_files` pickers rooted at specific
-directories.
+directories. Located at [`lua/core/telescope-custom.lua`](lua/core/telescope-custom.lua)
+— loaded as a helper module, not a plugin spec.
 
 ### Details
 
@@ -71,7 +77,7 @@ Nine functions, each opening `telescope.builtin.find_files` with
 
 | Function             | `cwd`          |
 |----------------------|----------------|
-| `find_files_slash`   | `/`            |
+| `find_files_slight`  | `/`            |
 | `find_files_root`    | `/root`        |
 | `find_files_home`    | `~`            |
 | `find_files_etc`     | `/etc`         |
@@ -83,26 +89,5 @@ Nine functions, each opening `telescope.builtin.find_files` with
 
 All use `follow = true` and `hidden = true`.
 
-Called by `<leader>tcs*` keymaps in `telescope.lua`.
-  
-
-
-
----
-
-## themes
-
-Protected colorscheme application with a reusable function.
-
-### Details
-
-`setColorScheme(name)` wraps `vim.cmd('colorscheme ' .. name)` in
-`pcall`. If the colorscheme isn't installed (e.g., first startup
-before lazy.nvim syncs), it prints a warning instead of crashing.
-
-Called by `tokyonight.lua`'s `config()` to apply the tokyonight
-theme. Can be reused for other colorschemes by importing this
-module.
-  
-
-
+Called by `<leader>tcs*` keymaps in
+[`lua/core/telescope.lua`](lua/core/telescope.lua).

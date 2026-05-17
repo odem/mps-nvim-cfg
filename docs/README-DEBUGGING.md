@@ -1,6 +1,6 @@
-# Debugging Tools
+# Debugging
 
-Debugging plugins from `lua/debugging/`.
+Debugging plugins from [`lua/debugging/`](lua/debugging/).
 
 ---
 
@@ -8,31 +8,28 @@ Debugging plugins from `lua/debugging/`.
 
 ### Core DAP
 
-**File**: `debugging/core.lua`  
+**File**: [`debugging/core.lua`](lua/debugging/core.lua)  
 **Repository**: [mfussenegger/nvim-dap](https://github.com/mfussenegger/nvim-dap)  
-**Description**: Core DAP implementation  
-**Key Settings**: None
+**Description**: Core DAP implementation for multi-language debugging
 
 ### DAP UI
 
-**File**: `debugging/core.lua` (part of)  
 **Repository**: [rcarriga/nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)  
-**Description**: DAP UI  
-**Key Settings**: None
+**Description**: UI for DAP (variables, breakpoints, stack traces)
 
 ### Python Debug
 
-**File**: `debugging/core.lua` (part of)  
 **Repository**: [mfussenegger/nvim-dap-python](https://github.com/mfussenegger/nvim-dap-python)  
-**Description**: Python debug adapter  
-**Key Settings**: None
+**Description**: Python debug adapter
 
-### Persistent Breakpoints
+### Go Debug
 
-**File**: `debugging/core.lua` (part of)  
-**Repository**: [linux-cultist/venv-selector.nvim](https://github.com/linux-cultist/venv-selector.nvim) (or similar)  
-**Description**: Breakpoint persistence  
-**Key Settings**: None
+**Repository**: [mfussenegger/nvim-dap-go](https://github.com/mfussenegger/nvim-dap-go)  
+**Description**: Go debug adapter
+
+### Rust Debug
+
+Configured via builtin DAP for C++ (lldb-mi)
 
 ---
 
@@ -40,11 +37,13 @@ Debugging plugins from `lua/debugging/`.
 
 | Keys | Action |
 |------|--------|
-| `<F9>` | Start/Continue |
+| `<F5>` / `<F9>` | Start/Continue debug |
 | `<F10>` | Step over |
 | `<F11>` | Step into |
-| `<F12>` | Terminate |
-| `mm` | Toggle breakpoint |
-| `<leader>bb` | List breakpoints |
-| `<leader>bc` | Clear breakpoints |
+| `<F12>` / `<S-F5>` | Terminate |
+| `<leader>bb` | Toggle breakpoint |
+| `<leader>bc` | Clear all breakpoints |
 | `<leader>bo` | Toggle breakpoint options |
+| `<leader>bl` | List breakpoints |
+
+See [`docs/README-TOOLS.md`](docs/README-TOOLS.md) for GDB integration.

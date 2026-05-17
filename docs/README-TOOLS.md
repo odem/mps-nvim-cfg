@@ -1,34 +1,6 @@
-# Development Tools
+# Tools
 
-Tool plugins from `lua/tools/` and `lua/core/`.
-
----
-
-## Fuzzy Finder
-
-### Telescope
-
-**File**: `core/telescope.lua`  
-**Repository**: [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)  
-**Description**: File/search picker with fzf-native  
-**Key Settings**: Custom layout, fzf-native extension
-
-| Keys | Action |
-|------|--------|
-| `<leader>T` | Telescope main menu |
-| `<leader>tf` | Find files |
-| `<leader>tg` | Grep |
-| `<leader>tb` | Buffers |
-| `<leader>th` | Help tags |
-| `gd` | LSP definitions |
-| `gr` | LSP references |
-
-### Telescope Custom
-
-**File**: `core/telescope-custom.lua`  
-**Repository**: [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)  
-**Description**: Telescope extensions  
-**Key Settings**: Fixed cwd find_files
+Development tool plugins from [`lua/tools/`](lua/tools/).
 
 ---
 
@@ -36,10 +8,9 @@ Tool plugins from `lua/tools/` and `lua/core/`.
 
 ### ToggleTerm
 
-**File**: `tools/toggleterm.lua`  
+**File**: [`tools/toggleterm.lua`](lua/tools/toggleterm.lua)  
 **Repository**: [akinsho/toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)  
-**Description**: Embedded terminal  
-**Key Settings**: None (terminal embedded)
+**Description**: Embedded terminal
 
 ---
 
@@ -47,10 +18,9 @@ Tool plugins from `lua/tools/` and `lua/core/`.
 
 ### Overseer
 
-**File**: `tools/overseer.lua`  
+**File**: [`tools/overseer.lua`](lua/tools/overseer.lua)  
 **Repository**: [stevearc/overseer.nvim](https://github.com/stevearc/overseer.nvim)  
-**Description**: Task runner  
-**Key Settings**: None
+**Description**: Task runner for build workflows
 
 ---
 
@@ -58,10 +28,9 @@ Tool plugins from `lua/tools/` and `lua/core/`.
 
 ### Dadbod
 
-**File**: `tools/dadbod.lua`  
+**File**: [`tools/dadbod.lua`](lua/tools/dadbod.lua)  
 **Repository**: [tpope/vim-dadbod](https://github.com/tpope/vim-dadbod)  
-**Description**: Database viewer  
-**Key Settings**: None
+**Description**: Database viewer and query runner
 
 ---
 
@@ -69,26 +38,26 @@ Tool plugins from `lua/tools/` and `lua/core/`.
 
 ### Rest Console
 
-**File**: `tools/rest-console.lua`  
+**File**: [`tools/rest-console.lua`](lua/tools/rest-console.lua)  
 **Repository**: [rest-nvim/rest.nvim](https://github.com/rest-nvim/rest.nvim)  
-**Description**: HTTP client  
-**Key Settings**: None
+**Description**: HTTP client for REST APIs
 
 ---
 
 ## Git
 
-### Git
+### Fugitive
 
-**File**: `tools/git.lua`  
-**Repository**: [kdheepak/lazygit.nvim](https://github.com/kdheepak/lazygit.nvim)  
-**Description**: Lazygit integration  
-**Key Settings**: None
+**File**: [`tools/git.lua`](lua/tools/git.lua)  
+**Repository**: [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive)  
+**Description**: Git wrapper for Vim
 
 | Keys | Action |
 |------|--------|
-| `<leader>gg` | Open lazygit |
-| `<leader>gf` | Lazygit file |
+| `<leader>gg` | Git status |
+| `<leader>gd` | Git diff |
+| `<leader>gb` | Git blame |
+| `<leader>gs` | Git stage |
 
 ---
 
@@ -96,10 +65,9 @@ Tool plugins from `lua/tools/` and `lua/core/`.
 
 ### Hlslens
 
-**File**: `tools/hlslens.lua`  
+**File**: [`tools/hlslens.lua`](lua/tools/hlslens.lua)  
 **Repository**: [kevinhwang91/nvim-hlslens](https://github.com/kevinhwang91/nvim-hlslens)  
-**Description**: Search lens  
-**Key Settings**: None (integrates with scrollbar)
+**Description**: Search lens (highlights search results)
 
 ---
 
@@ -107,10 +75,9 @@ Tool plugins from `lua/tools/` and `lua/core/`.
 
 ### AutoTag
 
-**File**: `tools/autotag.lua`  
+**File**: [`tools/autotag.lua`](lua/tools/autotag.lua)  
 **Repository**: [windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs)  
-**Description**: Auto-close tags  
-**Key Settings**: None
+**Description**: Auto-close tags for HTML/JSX
 
 ---
 
@@ -118,9 +85,9 @@ Tool plugins from `lua/tools/` and `lua/core/`.
 
 ### Todo Comments
 
-**File**: `tools/todo-comments.lua`  
+**File**: [`tools/todo-comments.lua`](lua/tools/todo-comments.lua)  
 **Repository**: [folke/todo-comments.nvim](https://github.com/folke/todo-comments.nvim)  
-**Description**: Highlight TODO/FIXME comments  
+**Description**: Highlight TODO/FIXME comments
 
 | Keys | Action |
 |------|--------|
@@ -134,18 +101,16 @@ Tool plugins from `lua/tools/` and `lua/core/`.
 
 ### Sleuth
 
-**File**: `tools/sleuth.lua`  
+**File**: [`tools/sleuth.lua`](lua/tools/sleuth.lua)  
 **Repository**: [tpope/vim-sleuth](https://github.com/tpope/vim-sleuth)  
-**Description**: Auto-indent detection  
-**Key Settings**: None
+**Description**: Auto-indent detection based on file type
 
 ---
 
 ## GDB Integration
 
-### GDB
+### GDB DAP
 
-**File**: `tools/gdb.lua`  
-**Repository**: [sukcesang/gdb-dap](https://github.com/sukcesang/gdb-dap) (or similar)  
-**Description**: GDB DAP integration  
-**Key Settings**: None
+**File**: [`tools/gdb.lua`](lua/tools/gdb.lua)  
+**Repository**: [sukcesang/gdb-dap](https://github.com/sukcesang/gdb-dap)  
+**Description**: GDB Debug Adapter Protocol integration

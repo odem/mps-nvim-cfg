@@ -1,6 +1,6 @@
-# Navigation Plugins
+# Navigation
 
-Navigation plugins from `lua/navigation/`.
+Navigation plugins from [`lua/navigation/`](lua/navigation/).
 
 ---
 
@@ -8,18 +8,13 @@ Navigation plugins from `lua/navigation/`.
 
 ### Neo-tree
 
-**File**: `navigation/neo-tree.lua`  
+**File**: [`navigation/neo-tree.lua`](lua/navigation/neo-tree.lua)  
 **Repository**: [nvim-neo-tree/neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)  
-**Description**: File tree with filesystem, buffers, and git_status sources  
-**Key Settings**:
-- Sources: filesystem, buffers, git_status
-- Follow current file enabled
-- Libuv file watcher enabled
+**Description**: File tree with filesystem, buffers, and git_status sources
 
 | Keys | Action |
 |------|--------|
-| `<A-e>` | Toggle neo-tree |
-| `<A-E>` | Reveal current file |
+| `<leader>e` | Toggle neo-tree at cwd |
 
 ---
 
@@ -27,10 +22,9 @@ Navigation plugins from `lua/navigation/`.
 
 ### Oil
 
-**File**: `navigation/oil.lua`  
+**File**: [`navigation/oil.lua`](lua/navigation/oil.lua)  
 **Repository**: [stevearc/oil.nvim](https://github.com/stevearc/oil.nvim)  
-**Description**: Edit directories as buffers  
-**Key Settings**: Minimal stripped config
+**Description**: Edit directories as buffers
 
 | Keys | Action |
 |------|--------|
@@ -42,10 +36,9 @@ Navigation plugins from `lua/navigation/`.
 
 ### Yazi
 
-**File**: `navigation/yazi.lua`  
-**Repository**: [mikavilasi/yazi-nvim](https://github.com/mikavilasi/yazi-nvim)  
-**Description**: Terminal file manager integration  
-**Key Settings**: None
+**File**: [`navigation/yazi.lua`](lua/navigation/yazi.lua)  
+**Repository**: [mikavilpas/yazi.nvim](https://github.com/mikavilpas/yazi.nvim)  
+**Description**: Terminal file manager integration
 
 | Keys | Action |
 |------|--------|
@@ -53,14 +46,35 @@ Navigation plugins from `lua/navigation/`.
 
 ---
 
+## Fuzzy Finder
+
+### Telescope
+
+**File**: [`core/telescope.lua`](lua/core/telescope.lua)  
+**Repository**: [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)  
+**Description**: File/search picker with fzf-native
+
+| Keys | Action |
+|------|--------|
+| `<leader>T` | Telescope main menu |
+| `<leader>tf` | Find files |
+| `<leader>tg` | Grep |
+| `<leader>tb` | Buffers |
+| `<leader>th` | Help tags |
+| `gd` | LSP definitions |
+| `gr` | LSP references |
+
+See [`docs/README-CORE.md`](docs/README-CORE.md) for custom telescope pickers.
+
+---
+
 ## Quick Navigation
 
 ### Harpoon
 
-**File**: `navigation/harpoon.lua`  
+**File**: [`navigation/harpoon.lua`](lua/navigation/harpoon.lua)  
 **Repository**: [ThePrimeagen/harpoon](https://github.com/ThePrimeagen/harpoon)  
-**Description**: File marks for quick switching  
-**Key Settings**: None
+**Description**: File marks for quick switching
 
 | Keys | Action |
 |------|--------|
@@ -76,10 +90,9 @@ Navigation plugins from `lua/navigation/`.
 
 ### Snipe
 
-**File**: `navigation/snipe.lua`  
-**Repository**: [LewisLiu1/snipe.nvim](https://github.com/LewisLiu1/snipe.nvim)  
-**Description**: Hint-based buffer switching  
-**Key Settings**: None
+**File**: [`navigation/snipe.lua`](lua/navigation/snipe.lua)  
+**Repository**: [leath-dub/snipe.nvim](https://github.com/leath-dub/snipe.nvim)  
+**Description**: Hint-based buffer switching
 
 | Keys | Action |
 |------|--------|
@@ -91,10 +104,9 @@ Navigation plugins from `lua/navigation/`.
 
 ### Flash
 
-**File**: `navigation/flash.lua`  
+**File**: [`navigation/flash.lua`](lua/navigation/flash.lua)  
 **Repository**: [folke/flash.nvim](https://github.com/folke/flash.nvim)  
-**Description**: Enhanced motion search  
-**Key Settings**: None
+**Description**: Enhanced motion search
 
 | Keys | Action |
 |------|--------|

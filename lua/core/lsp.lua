@@ -12,9 +12,6 @@ vim.lsp.config["*"] = {
 vim.schedule(function()
 	-- Use Mason's registry to check installed packages
 	local registry = require("mason-registry")
-	local installed = {}
-
-	-- Get installed packages from Mason
 	local ok, err = pcall(function()
 		registry.ensure_installed({
 			"ruff",
@@ -35,7 +32,6 @@ vim.schedule(function()
 			"texlab",
 			"lemminx",
 			"taplo",
-			"nginx-language-server",
 			"ansible-language-server",
 			"omnisharp",
 		}, function()
@@ -240,13 +236,13 @@ vim.lsp.config.vimls = {
 }
 vim.lsp.enable("vimls")
 
--- Nginx
-vim.lsp.config.nginx_language_server = {
-	cmd = { "nginx-language-server", "--stdio" },
-	filetypes = { "nginx" },
-	root_markers = { ".git" },
-}
-vim.lsp.enable("nginx_language_server")
+-- Nginx (disabled - doesn't support --stdio, requires TCP)
+-- vim.lsp.config.nginx_language_server = {
+-- 	cmd = { "nginx-language-server" },
+-- 	filetypes = { "nginx" },
+-- 	root_markers = { ".git" },
+-- }
+-- vim.lsp.enable("nginx_language_server")
 
 -- CMake
 vim.lsp.config.cmake = {

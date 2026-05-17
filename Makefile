@@ -14,6 +14,27 @@ validate:   ## Full validation suite
 	$(MAKE) check
 
 deps:       ## Install external system dependencies (requires sudo)
-	@echo "Installing system dependencies for LSP servers..."
+	@echo "=== System packages (apt) ==="
 	@sudo apt update
-	@sudo apt install -y shellcheck cmake clangd
+	@sudo apt install -y shellcheck cmake clangd build-essential pkg-config libssl-dev
+
+	@echo ""
+	@echo "=== Python debug adapter ==="
+	@pip3 install debugpy
+
+	@echo ""
+	@echo "=== Lua tools (if cargo available) ==="
+	@cargo install stylua 2>/dev/null || echo "stylua: already installed or cargo not available"
+	@luacheck --version >/dev/null 2>&1 && echo "luacheck: already installed" || echo "luacheck: not found (install via: apt install luacheck)"
+
+	@echo ""
+	@echo "=== Node.js tools ==="
+	@npm install -g tree-sitter-cli 2>/dev/null || echo "tree-sitter-cli: skipped (npm not available)"
+
+	@echo ""
+	@echo "=== Neovim plugins ==="
+	@echo "Run 'nvim +Lazy! sync' to install all plugins"
+	@echo ""
+	@echo "=== Mason LSP servers ==="
+	@echo "LSP servers auto-install on first use of each language"
+	@echo "To force install all: nvim +MasonInstallAll +q"

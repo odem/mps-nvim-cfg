@@ -10,6 +10,5 @@ return {
 	require("core.neoconf"),
 	require("core.undotree"),
 	require("core.telescope"),
-	require("core.telescope-custom"),
 	require("core.which-key"),
 }

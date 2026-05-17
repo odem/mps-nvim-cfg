@@ -10,11 +10,23 @@ vim.lsp.config["*"] = {
 
 -- Auto-install LSP servers via Mason (deferred, non-blocking)
 vim.schedule(function()
+	local data_dir = vim.fn.stdpath("data")
+	local cache_file = data_dir .. "/mason-installed"
+	local installed = {}
+
+	-- Load cached installation status
+	local lines = vim.fn.readfile(cache_file)
+	if lines and #lines > 0 then
+		for _, name in ipairs(lines) do
+			installed[name] = true
+		end
+	end
+
 	local servers = {
 		{ bin = "ruff", mason = "ruff" },
 		{ bin = "pyright-langserver", mason = "pyright" },
 		{ bin = "lua-language-server", mason = "lua-language-server" },
-		{ bin = "html", mason = "html-lsp" },
+		{ bin = "html-lsp", mason = "html-lsp" },
 		{ bin = "css-lsp", mason = "css-lsp" },
 		{ bin = "typescript-language-server", mason = "typescript-language-server" },
 		{ bin = "dockerfile-language-server", mason = "dockerfile-language-server" },
@@ -33,9 +45,20 @@ vim.schedule(function()
 		{ bin = "ansible-language-server", mason = "ansible-language-server" },
 		{ bin = "omnisharp", mason = "omnisharp" },
 	}
+
+	local to_install = {}
 	for _, s in ipairs(servers) do
-		if vim.fn.executable(s.bin) ~= 1 then
-			pcall(vim.cmd, "MasonInstall " .. s.mason)
+		if not installed[s.mason] and vim.fn.executable(s.bin) ~= 1 then
+			table.insert(to_install, s.mason)
+		end
+	end
+
+	-- Install all at once to avoid repeated restarts
+	if #to_install > 0 then
+		local ok, err = pcall(vim.cmd, "MasonInstall " .. table.concat(to_install, " "))
+		if ok then
+			-- Cache successful installations
+			vim.fn.writefile(to_install, cache_file, "a")
 		end
 	end
 end)

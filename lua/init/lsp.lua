@@ -217,7 +217,7 @@ vim.lsp.enable("rust_analyzer")
 
 -- TOML
 vim.lsp.config.taplo = {
-	cmd = { "taplo" },
+	cmd = { "taplo", "lsp" },
 	filetypes = { "toml" },
 	root_markers = { ".toml", ".git" },
 }

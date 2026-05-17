@@ -33,7 +33,11 @@ opt.showtabline = 2
 opt.pumheight = 10
 opt.fillchars = { eob = " " }
 opt.list = true
-vim.cmd("colorscheme tokyonight")
+
+vim.api.nvim_create_autocmd("VimEnter", {
+	once = true,
+	command = "colorscheme tokyonight",
+})
 
 -- Editor behavior
 opt.breakindent = true

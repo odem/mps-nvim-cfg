@@ -16,20 +16,16 @@ vim.schedule(function()
 		{ bin = "pyright-langserver", mason = "pyright" },
 		-- Lua
 		{ bin = "lua-language-server", mason = "lua-language-server" },
-		-- Web
-		{ bin = "html", mason = "html" },
-		{ bin = "css-lsp", mason = "css-lsp" },
+		-- Web (use vscode- prefix for some)
+		{ bin = "html-language-server", mason = "vscode-html-language-server" },
+		{ bin = "css-language-server", mason = "vscode-css-language-server" },
 		{ bin = "typescript-language-server", mason = "typescript-language-server" },
 		-- Docker
 		{ bin = "dockerfile-language-server", mason = "dockerfile-language-server" },
-		{ bin = "docker-compose-language-service", mason = "docker-compose-language-service" },
-		-- Config
-		{ bin = "json-lsp", mason = "json-lsp" },
-		{ bin = "taplo", mason = "taplo" },
+		-- JSON
+		{ bin = "json-language-server", mason = "vscode-json-language-server" },
 		-- Markup
 		{ bin = "marksman", mason = "marksman" },
-		{ bin = "texlab", mason = "texlab" },
-		{ bin = "lemminx", mason = "lemminx" },
 		-- Shell
 		{ bin = "bash-language-server", mason = "bash-language-server" },
 		-- Systems
@@ -37,12 +33,19 @@ vim.schedule(function()
 		{ bin = "clangd", mason = "clangd" },
 		{ bin = "cmake-language-server", mason = "cmake-language-server" },
 		{ bin = "vim-language-server", mason = "vim-language-server" },
+		-- Optional (may not exist in Mason)
+		{ bin = "texlab", mason = "texlab" },
+		{ bin = "lemminx", mason = "lemminx" },
+		{ bin = "taplo", mason = "taplo" },
 		{ bin = "nginx-language-server", mason = "nginx-language-server" },
-		{ bin = "csharp-ls", mason = "csharp-ls" },
+		{ bin = "csharp-language-server", mason = "omnisharp" },
 	}
 	for _, s in ipairs(servers) do
 		if vim.fn.executable(s.bin) ~= 1 then
-			vim.cmd("MasonInstall " .. s.mason)
+			local ok, err = pcall(vim.cmd, "MasonInstall " .. s.mason)
+			if not ok then
+				vim.notify("MasonInstall " .. s.mason .. " failed: " .. err, vim.log.levels.WARN)
+			end
 		end
 	end
 end)

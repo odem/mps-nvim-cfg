@@ -27,11 +27,11 @@ opt.termguicolors = true
 opt.number = true
 opt.relativenumber = true
 opt.cursorline = true
-opt.signcolumn = 'yes'
-opt.colorcolumn = '80'
+opt.signcolumn = "yes"
+opt.colorcolumn = "80"
 opt.showtabline = 2
 opt.pumheight = 10
-opt.fillchars = { eob = ' ' }
+opt.fillchars = { eob = " " }
 opt.list = true
 
 -- Editor behavior
@@ -51,36 +51,36 @@ opt.splitbelow = true
 -- Search
 opt.ignorecase = true
 opt.smartcase = true
-opt.inccommand = 'split'
+opt.inccommand = "split"
 
 -- Folding
 opt.foldenable = true
 opt.foldlevel = 99
 opt.foldlevelstart = 99
-opt.foldcolumn = '1'
+opt.foldcolumn = "1"
 
 -- Files
 opt.swapfile = false
 opt.undofile = true
-pcall(vim.fn.mkdir, vim.fn.expand('$HOME/.config/nvim-undodir'), 'p')
-opt.undodir = vim.fn.expand('$HOME/.config/nvim-undodir')
+pcall(vim.fn.mkdir, vim.fn.expand("$HOME/.config/nvim-undodir"), "p")
+opt.undodir = vim.fn.expand("$HOME/.config/nvim-undodir")
 opt.backup = false
 opt.writebackup = false
 opt.autochdir = false
 
 -- Completion
-opt.completeopt = 'menu,menuone,noselect'
+opt.completeopt = "menu,menuone,noselect"
 
 -- Grep
-opt.grepformat = '%f:%l:%c:%m'
-opt.grepprg = 'rg --vimgrep'
+opt.grepformat = "%f:%l:%c:%m"
+opt.grepprg = "rg --vimgrep"
 
 -- Spell
-opt.spelllang = { 'de', 'en' }
+opt.spelllang = { "de", "en" }
 
 -- Timing
 opt.timeout = true
 opt.timeoutlen = 1000
 
 -- System clipboard
-opt.clipboard = 'unnamedplus'
+opt.clipboard = "unnamedplus"

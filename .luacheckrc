@@ -1,7 +1,7 @@
 -- luacheck configuration
 -- .luacheckrc
 
-std = lua51+glua
+std = lua51
 
 exclude_files = {
     ".deps/",

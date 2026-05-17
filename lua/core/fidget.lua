@@ -1,4 +1,4 @@
 return {
-  'j-hui/fidget.nvim',
-  event = { 'LspAttach' },
+	"j-hui/fidget.nvim",
+	event = { "LspAttach" },
 }

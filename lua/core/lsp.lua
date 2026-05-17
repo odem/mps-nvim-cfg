@@ -15,8 +15,10 @@ vim.schedule(function()
 	local installed = {}
 
 	-- Load cached installation status
-	local lines = vim.fn.readfile(cache_file)
-	if lines and #lines > 0 then
+	local lines = {}
+	local ok, lines_read = pcall(vim.fn.readfile, cache_file)
+	if ok and lines_read and #lines_read > 0 then
+		lines = lines_read
 		for _, name in ipairs(lines) do
 			installed[name] = true
 		end

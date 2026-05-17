@@ -1,100 +1,24 @@
 # nvim-dev
 
 A lightweight, fast Neovim configuration built on **Neovim 0.12+**
-native APIs. Modular plugin specs, native `vim.lsp.config` for language
-servers (no lspconfig), blink.cmp for completion, lazy.nvim for plugin
-management.
+native APIs. Modular plugin specs grouped by domain, native
+`vim.lsp.config` for language servers, blink.cmp for completion,
+lazy.nvim for plugin management.
 
 ## Core Features
 
-- **Native first** — uses `vim.lsp.config` + `vim.lsp.enable`
-  instead of nvim-lspconfig; no overrides of sensible Neovim
-  defaults.
-- **Modular** — plugins grouped by domain (appearance, navigation,
-  tools, debugging), each with own file, loaded by lazy.nvim's `spec`
-  list. No monolithic `init.lua` or single-file configs.
+- **Native LSP** — uses `vim.lsp.config` + `vim.lsp.enable` (no
+  lspconfig). 21 language servers auto-installed via mason.nvim.
+  Snippets via LuaSnip with friendly-snippets.
+- **Modular architecture** — plugins grouped by domain (core, appearance,
+  navigation, tools, debugging), each with own file, loaded by
+  lazy.nvim's `spec` list. No monolithic init.lua.
 - **Fast startup** — lazy.nvim with per-plugin `keys`/`cmd`/`ft`
   triggers; autoload-only plugins never run at startup.
 - **Fail-safe** — `pcall` wraps operations that could fail (missing
-  colorscheme, `mkdir`, keymap deletions).
+  colorscheme, mkdir, keymap deletions).
 - **Self-documenting keybinds** — every `desc` uses `[bracket]`
   notation for which-key integration.
-
-## Project structure
-
-```
-nvim-dev/
-├── README.md                 This file
-├── docs/                    Documentation
-│   ├── README-APPEARANCE.md
-│   ├── README-CORE.md
-│   ├── README-DEBUGGING.md
-│   ├── README-HELPERS.md
-│   ├── README-KEYBINDS.md
-│   ├── README-NAVIGATION.md
-│   ├── README-OPTIONS.md
-│   └── README-TOOLS.md
-├── init.lua                  Entry point (8 lines)
-├── Makefile                  Build/lint/check tasks
-├── lazy-lock.json            Locked dependencies
-├── lua/
-│   ├── init/                 Bootstrap & core setup
-│   │   ├── bootstrap.lua     lazy.nvim bootstrap
-│   │   ├── plugins.lua       Spec aggregator
-│   │   ├── lsp.lua           21 LSP servers
-│   │   └── friendly-snippets.lua
-│   ├── options.lua           vim.opt, disabled built-ins, providers
-│   ├── keymaps.lua           Global keybindings
-│   ├── helpers/              Utility modules
-│   │   ├── quickfix.lua
-│   │   ├── smart_delete.lua
-│   │   └── themes.lua
-│   ├── core/                 Core plugin specs
-│   │   ├── completion.lua   blink.cmp + LuaSnip
-│   │   ├── friendly-snippets.lua
-│   │   ├── lazydev.lua
-│   │   ├── lasnip.lua        Custom snippets
-│   │   ├── lsp.lua           Native LSP config
-│   │   ├── mason.lua         LSP/DAP installer
-│   │   ├── neoconf.lua
-│   │   ├── treesitter.lua
-│   │   ├── telescope.lua
-│   │   ├── telescope-custom.lua
-│   │   ├── undotree.lua
-│   │   └── which-key.lua
-│   ├── appearance/           UI plugins (colorschemes, statusline)
-│   │   ├── init.lua
-│   │   ├── tokyonight.lua
-│   │   ├── gruvbox.lua
-│   │   ├── gitsigns.lua
-│   │   ├── lualine.lua
-│   │   ├── bufferline.lua
-│   │   ├── scrollbar.lua
-│   │   └── ...
-│   ├── navigation/           File navigation & fuzzy finding
-│   │   ├── init.lua
-│   │   ├── neo-tree.lua
-│   │   ├── oil.lua
-│   │   ├── harpoon.lua
-│   │   ├── snipe.lua
-│   │   ├── yazi.lua
-│   │   └── flash.lua
-│   ├── tools/                Development tools
-│   │   ├── init.lua
-│   │   ├── toggleterm.lua
-│   │   ├── overseer.lua
-│   │   ├── rest-console.lua
-│   │   ├── git.lua
-│   │   ├── hlslens.lua
-│   │   ├── todo-comments.lua
-│   │   └── ...
-│   └── debugging/             DAP configuration
-│       ├── init.lua
-│       └── core.lua
-├── testfiles/                LSP validation test files
-│   ├── foo.py, index.ts, main.c, ...
-│   └── docker-compose.yaml, foo.toml, ...
-```
 
 ## Load order
 
@@ -140,36 +64,39 @@ keystroke.
 
 #### [Core](docs/README-CORE.md)
 
-Plugin specs for core functionality: completion (blink.cmp, LuaSnip),
-LSP setup (native vim.lsp.config), treesitter, mason.nvim, lazydev,
-neoconf, which-key.
+Powers core editor functionality: auto-completion (blink.cmp),
+snippet engine (LuaSnip), syntax highlighting (treesitter), LSP
+infrastructure (native vim.lsp.config), language server installation
+(mason.nvim), Lua development (lazydev, neoconf), and keybind
+documentation (which-key).
 
 #### [Helpers](docs/README-HELPERS.md)
 
-Shared utility modules used by `keymaps.lua` and plugin `config()`
-functions.
+Shared utility modules for `keymaps.lua` and plugin config functions.
+Quickfix window toggle, WORD-aware delete, colorscheme protection.
 
 #### [Appearance](docs/README-APPEARANCE.md)
 
-UI plugins: colorschemes (tokyonight, gruvbox), statusline (lualine),
-buffer tabs (bufferline), scrollbar, git signs (gitsigns), indent
-highlighting, yank highlight, window decorations.
+UI layer: colorschemes (tokyonight, gruvbox), statusline (lualine),
+buffer tabs (bufferline), scrollbar, git integration (gitsigns),
+indent visualization, yank highlighting, window decorations.
 
 #### [Navigation](docs/README-NAVIGATION.md)
 
-File navigation: neo-tree (file tree), oil (directory editing),
-telescope (fuzzy finder), harpoon (file marks), snipe (buffer picker),
-yazi (file jumper), flash (motion).
+File and buffer navigation: neo-tree (file tree), oil (directory
+editing), telescope (fuzzy finder), harpoon (file marks), snipe
+(buffer picker), yazi (file jumper), flash (motion).
 
 #### [Tools](docs/README-TOOLS.md)
 
-Development tools: toggleterm (terminal), overseer (task runner),
-rest.nvim (HTTP client), git (fugitive), hlslens (search lens),
-todo-comments, autotag, dadbod (DB), sleuth (filetype detection).
+Developer productivity: toggleterm (embedded terminal), overseer
+(task runner), rest.nvim (HTTP client), fugitive (git), hlslens
+(search lens), todo-comments, autotag, dadbod, sleuth.
 
 #### [Debugging](docs/README-DEBUGGING.md)
 
-nvim-dap configuration for debugging (C, Go, Rust, Python, Node.js).
+Debug Adapter Protocol integration for C, Go, Rust, Python, Node.js.
+nvim-dap with language-specific adapters.
 
 ---
 

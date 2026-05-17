@@ -112,7 +112,7 @@ init.lua
 
 ---
 
-## Files
+## Components
 
 ### [Options](docs/README-OPTIONS.md)
 
@@ -136,36 +136,38 @@ Helper modules (`quickfix`, `smart_delete`) are loaded locally at
 the top of the file to avoid repeated `require` calls on every
 keystroke.
 
-### [Core](docs/README-CORE.md)
+### Plugins
+
+#### [Core](docs/README-CORE.md)
 
 Plugin specs for core functionality: completion (blink.cmp, LuaSnip),
 LSP setup (native vim.lsp.config), treesitter, mason.nvim, lazydev,
 neoconf, which-key.
 
-### [Helpers](docs/README-HELPERS.md)
+#### [Helpers](docs/README-HELPERS.md)
 
 Shared utility modules used by `keymaps.lua` and plugin `config()`
 functions.
 
-### [Appearance](docs/README-APPEARANCE.md)
+#### [Appearance](docs/README-APPEARANCE.md)
 
 UI plugins: colorschemes (tokyonight, gruvbox), statusline (lualine),
 buffer tabs (bufferline), scrollbar, git signs (gitsigns), indent
 highlighting, yank highlight, window decorations.
 
-### [Navigation](docs/README-NAVIGATION.md)
+#### [Navigation](docs/README-NAVIGATION.md)
 
 File navigation: neo-tree (file tree), oil (directory editing),
 telescope (fuzzy finder), harpoon (file marks), snipe (buffer picker),
 yazi (file jumper), flash (motion).
 
-### [Tools](docs/README-TOOLS.md)
+#### [Tools](docs/README-TOOLS.md)
 
 Development tools: toggleterm (terminal), overseer (task runner),
 rest.nvim (HTTP client), git (fugitive), hlslens (search lens),
 todo-comments, autotag, dadbod (DB), sleuth (filetype detection).
 
-### [Debugging](docs/README-DEBUGGING.md)
+#### [Debugging](docs/README-DEBUGGING.md)
 
 nvim-dap configuration for debugging (C, Go, Rust, Python, Node.js).
 
@@ -194,16 +196,3 @@ nvim-dap configuration for debugging (C, Go, Rust, Python, Node.js).
 | **Buffer Tabs** | bufferline | [`lua/appearance/bufferline.lua`](lua/appearance/bufferline.lua) | Buffer tabline |
 | **Scrollbar** | nvim-scrollbar | [`lua/appearance/scrollbar.lua`](lua/appearance/scrollbar.lua) | Scrollbar |
 | **Colorscheme** | tokyonight | [`lua/appearance/tokyonight.lua`](lua/appearance/tokyonight.lua) | Dark theme |
-
----
-
-## See Also
-
-- [Options](docs/README-OPTIONS.md) — All vim options
-- [Keymaps](docs/README-KEYBINDS.md) — Complete keybind reference
-- [Core](docs/README-CORE.md) — Core plugins
-- [Helpers](docs/README-HELPERS.md) — Utility modules
-- [Appearance](docs/README-APPEARANCE.md) — UI plugins
-- [Navigation](docs/README-NAVIGATION.md) — Navigation plugins
-- [Tools](docs/README-TOOLS.md) — Development tools
-- [Debugging](docs/README-DEBUGGING.md) — Debugging tools
